@@ -64,8 +64,9 @@ function downloadBooks($url){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    //Uncomment if you have SSL Errors due to networks
+    #curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    #curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     $info = curl_getinfo($ch);
@@ -105,7 +106,7 @@ if($argc > 1)
 if(isset($_GET['dir']) && trim($_GET['dir']) != "")
     $directory = $_GET['dir'];
 else
-    $directory = ""; //Configure this to a local directory
+    $directory = "./books"; //Configure this to a local directory
 
 //check for the url argument, also have a defualt url
 if(isset($_GET['url']) && trim($_GET['url']) != "")
